@@ -1,0 +1,38 @@
+{% extends 'backComp.html.twig' %}
+
+{% block title %}Speciality index{% endblock %}
+
+{% block main %}
+    <h1>Speciality index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Speciality_name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for speciality in specialities %}
+            <tr>
+                <td>{{ speciality.id }}</td>
+                <td>{{ speciality.specialityName }}</td>
+                <td>{{ speciality.description }}</td>
+
+                <td>
+                    <a href="{{ path('app_speciality_show', {'id': speciality.id}) }}">show</a>
+                    <a href="{{ path('app_speciality_edit', {'id': speciality.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_speciality_new') }}">Create new</a>
+{% endblock %}
