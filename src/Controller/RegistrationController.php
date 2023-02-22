@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() ) {
 
         //    if($request->isMethod('post')){
-
+           
            
             //encode the plain password
                  $user->setPasswordUser(
@@ -101,7 +101,7 @@ class RegistrationController extends AbstractController
     }
 
 
-    #[Route('/register/client', name: 'app_register_client')]
+    #[Route('/registerClient', name: 'app_registerClient')]
     public function registerClient(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -109,7 +109,8 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        // if ($form->isSubmitted() && $form->isValid()) 
+        if ($form->isSubmitted() ){
             // encode the plain password
              $user->setPasswordUser(
                  $userPasswordHasher->hashPassword(
@@ -117,9 +118,13 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                  )
              );
-            $user->setEmailUser($request->get("email_user"));
-            $user->setNomUser($request->get("nom_user"));
-            $user->setAdresseUser($request->get("adresse_user"));
+
+             $user->setEmailUser($request->get("registration_form")["email_user"]);
+             $user->setNomUser($request->get("registration_form")["nom_user"]);
+             $user->setAdresseUser($request->get("registration_form")["adresse_user"]);
+            // $user->setEmailUser($request->get("email_user"));
+            // $user->setNomUser($request->get("nom_user"));
+            // $user->setAdresseUser($request->get("adresse_user"));
 
             
 
@@ -131,13 +136,13 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('onshamzaoui720@gmail.com', 'GreenIt'))
-                    ->to($user->getEmailUser())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
+            // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            //     (new TemplatedEmail())
+            //         ->from(new Address('onshamzaoui720@gmail.com', 'GreenIt'))
+            //         ->to($user->getEmailUser())
+            //         ->subject('Please Confirm your Email')
+            //         ->htmlTemplate('registration/confirmation_email.html.twig')
+            // );
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
@@ -147,7 +152,7 @@ class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('registration/registerClient.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

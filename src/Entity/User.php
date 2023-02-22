@@ -43,9 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $adresse_user = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank (message:"speciality is required")]
-    private ?Speciality $speciality = null;
+    #[ORM\JoinColumn(nullable: true)]
+    // #[Assert\NotBlank (message:"speciality is required")]
+    private Speciality $speciality ;
 
    
     // #[ORM\ManyToOne(inversedBy: 'user')]
@@ -62,6 +62,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // {
     //     $this->specialite = new ArrayCollection();
     // }
+    private $plainPassword;
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -187,7 +200,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+         $this->plainPassword = null;
     }
 
     // public function isVerified(): bool
@@ -218,5 +231,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // {
     //     return $this->speciality;
     // }
+
 
 }

@@ -55,8 +55,8 @@ class RegistrationFormType extends AbstractType
             ->add('speciality', EntityType::class, [
                 'class' => Speciality::class,
                 'choice_label' => 'speciality_name',
-            ])
-            ->add('Save',SubmitType::class);
+            ]);
+            // ->add('Save',SubmitType::class);
             // ->add('role', ChoiceType::class, [
             //     'label' => 'Choose your role:',
             //     'choices' => [

@@ -27,6 +27,12 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
+//         $emailUser = $request->request->get('email_user', '');
+// $password = $request->request->get('password', '');
+
+// // log email and password
+// $this->logger->info('Email: ' . $emailUser);
+// $this->logger->info('Password: ' . $password);
         $emailUser = $request->request->get('email_user', '');
 
 
@@ -34,7 +40,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
         return new Passport(
             new UserBadge($emailUser),
-            new PasswordCredentials($request->request->get('password', '')),
+            new PasswordCredentials($request->request->get('password_user', '')),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
@@ -57,4 +63,23 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+//     public function authenticate2(Request $request): TokenInterface
+// {
+//     $email = $request->request->get('email');
+//     $password = $request->request->get('password');
+
+//     $user = $this->userRepository->findOneBy(['email' => $email]);
+
+//     if (!$user) {
+//         throw new AuthenticationException('User not found');
+//     }
+
+//     if (!$this->passwordHasher->isPasswordValid($user, $password)) {
+//         throw new AuthenticationException('Invalid password');
+//     }
+
+//     $token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
+
+//     return $token;
+// }
 }
