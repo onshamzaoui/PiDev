@@ -6,6 +6,9 @@ use App\Repository\SpecialityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 #[ORM\Entity(repositoryClass: SpecialityRepository::class)]
 class Speciality
@@ -16,12 +19,18 @@ class Speciality
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Regex("/^[A-Z][a-z]/")]
+    #[Assert\Length(max:255)]
+    #[Assert\Type(type:'string')]
     private ?string $speciality_name = null;
 
     #[ORM\OneToMany(mappedBy: 'speciality', targetEntity: User::class)]
     private Collection $users;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max : 255, maxMessage : "Description cannot be longer than {{ limit }} characters")]
     private ?string $description = null;
 
     public function __construct()

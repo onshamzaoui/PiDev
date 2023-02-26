@@ -1,77 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>GreenIT</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link rel="stylesheet" type="text/css" href="{{ asset ("assets/css/style.css") }}">
-<!-- //Custom Theme files -->
-
-<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
-
-</head>
-<body>
-
-	<div class="main-w3layouts wrapper">
-		<h1>SignUp</h1>
-		<div class="main-agileinfo">
-			<div class="agileits-top"> 
-{# {% extends "base.html.twig" %} #}
-{# {% form_theme form 'user/fields.html.twig' %} #}
+{% extends 'backComp.html.twig' %}
+{% block main %}
+<h1>add new user </h1>
                 {{ form_start(form,{'attr':{'novalidate':'novalidate'}})}}
                 			<div class="form-group">
-                        {{ form_label(form.nom_user,"Your Name",{'label_attr': {'style': 'color: white;'}}) }}
-                        {{ form_widget(form.nom_user,{'attr':{'class':'text'}})}}
+                        {{ form_label(form.nomUser,"Your Name") }}
+                        {{ form_widget(form.nomUser,{'attr':{'class':'text'}})}}
 							          <div class="alert alert-danger">
-                            	{{ form_errors(form.nom_user) }}
+                            	{{ form_errors(form.nomUser) }}
 							</div>
-                        {{ form_label(form.email_user,"Your Email",{'label_attr': {'style': 'color: white;'}}) }}
-                            {{ form_widget(form.email_user,{'attr':{'class':'text'}})}}
+                        {{ form_label(form.emailUser,"Your Email")}}
+                            {{ form_widget(form.emailUser,{'attr':{'class':'text'}})}}
 							<div class="alert alert-danger">
-                            	{{ form_errors(form.email_user) }}
+                            	{{ form_errors(form.emailUser) }}
 							</div>
-                        {{ form_label(form.adresse_user,"Your Adresse",{'label_attr': {'style': 'color: white;'}}) }}
-                            {{ form_widget(form.adresse_user,{'attr':{'class':'text'}})}}
+                        {{ form_label(form.adresse_user,"Your Adresse") }}
+                            {{ form_widget(form.adresseUser,{'attr':{'class':'text'}})}}
 							<div class="alert alert-danger">
-                            	{{ form_errors(form.adresse_user) }}
+                            	{{ form_errors(form.adresseUser) }}
 							</div>
 						 <div class="form-group">
-							 {{ form_label(form.speciality,"Your specialite",{'label_attr': {'style': 'color: white;'}}) }}
+							 {{ form_label(form.speciality,"Your specialite") }}
                             {{ form_widget(form.speciality)}}
 							<div class="alert alert-danger">
                             	{{ form_errors(form.speciality) }}
 							</div>
 						</div>
-						{# <select name="specialitie" class="custom-select" id="inputGroupSelect01">
-							<option selected>Choose...</option>
-							{% for specialitie in speciality %}
-								<option value="{{specialitie.id}}">{{specialitie.speciality_name}}</option>
-							{% endfor %}
-						</select>  #}
-                         {{ form_label(form.password_user,"Your password",{'label_attr': {'style': 'color: white;'}}) }}
-                            {{ form_widget(form.password_user,{'attr':{'class':'text'}})}}
+                         {{ form_label(form.passwordUser,"Your password") }}
+                            {{ form_widget(form.passwordUser,{'attr':{'class':'text'}})}}
 							<div class="alert alert-danger">
-                            	{{ form_errors(form.password_user) }}
+                            	{{ form_errors(form.passwordUser) }}
 							</div>
-					        <input type="submit" value="SIGNUP">
-                     {# <button class="btn">{{ button_label|default('Save') }}</button> #}
+                     <button class="btn">{{ button_label|default('Save') }}</button>
                 {{ form_end(form) }}
 			
-		{# {{ form_start(form) }}
-    {{ form_widget(form) }}
-#}
-    <ul class="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-</body>
+		
+   
+{% endblock %}

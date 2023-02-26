@@ -7,11 +7,11 @@
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-    {% if app.user %}
+    {# {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
-    {% endif %}
+    {% endif %} #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,12 +50,12 @@
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="email" value="{{ last_username }}" name="email_user" id="inputEmail_user" class="form-control" autocomplete="email" required autofocus  placeholder="UserEmail">
+						<input class="input100" type="email" value={{last_username}} name="emailUser" id="inputEmailUser" class="form-control" autocomplete="email" required autofocus  placeholder="UserEmail">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Please enter password">
-						<input class="input100" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Password">
+						<input class="input100" type="password" name="passwordUser" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Password">
 						  <input type="hidden" name="_csrf_token"
                              value="{{ csrf_token('authenticate') }}">
                         <span class="focus-input100"></span>

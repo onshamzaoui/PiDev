@@ -47,10 +47,10 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('email_user')
-            ->add('nom_user')
+            ->add('emailUser')
+            ->add('nomUser')
             // ->add('role_user')
-            ->add('adresse_user')
+            ->add('adresseUser')
             // ->add('speciality')
             ->add('speciality', EntityType::class, [
                 'class' => Speciality::class,

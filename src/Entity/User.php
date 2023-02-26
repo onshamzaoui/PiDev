@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email_user'], message: 'There is already an account with this email_user')]
+#[UniqueEntity(fields: ['emailUser'], message: 'There is already an account with this email_user')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -22,25 +22,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Email (message:"The Email '{{ value }}' is not a valid Email")]
-    private ?string $email_user = null;
+    private ?string $emailUser = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank (message:"Name is required")]
     // #[Assert\Regex("/^[A-Z][a-z]/")]
-    private ?string $nom_user = null;
+    private ?string $nomUser = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank (message:'Password is required')]
     #[Assert\Length(min:4)]
     
-    private ?string $password_user = null;
+    private ?string $passwordUser = null;
 
     #[ORM\Column]
-    private array $role_user = [];
+    private array $roleUser = [];
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank (message:' Adresse is required')]
-    private ?string $adresse_user = null;
+    private ?string $adresseUser = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: true)]
@@ -83,44 +83,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getEmailUser(): ?string
     {
-        return $this->email_user;
+        return $this->emailUser;
     }
 
-    public function setEmailUser(string $email_user): self
+    public function setEmailUser(string $emailUser): self
     {
-        $this->email_user = $email_user;
+        $this->emailUser = $emailUser;
 
         return $this;
     }
 
     public function getNomUser(): ?string
     {
-        return $this->nom_user;
+        return $this->nomUser;
     }
 
-    public function setNomUser(string $nom_user): self
+    public function setNomUser(string $nomUser): self
     {
-        $this->nom_user = $nom_user;
+        $this->nomUser = $nomUser;
 
         return $this;
     }
 
     public function getPasswordUser(): ?string
     {
-        return $this->password_user;
+        return $this->passwordUser;
     }
     public function getPassword(): string
     {
-        return $this->password_user;
+        return $this->passwordUser;
     }
     public function setPassword(string $password): void
 {
-    $this->password_user = password_hash($password, PASSWORD_DEFAULT);
+    $this->passwordUser = password_hash($password, PASSWORD_DEFAULT);
 }
 
-    public function setPasswordUser(string $password_user): self
+    public function setPasswordUser(string $passwordUser): self
     {
-        $this->password_user = $password_user;
+        $this->passwordUser = $passwordUser;
 
         return $this;
     }
@@ -130,30 +130,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // return $this->role_user;
         // $role_user = $this->role_user;
           // guarantee every user at least has ROLE_USER
-        $role_user[] = 'ROLE_CLIENT';
+        $roleUser[] = 'ROLE_CLIENT';
 
       
-        $role_user[] = 'ROLE_PRO';
-        $role_user[] = 'ROLE_ADMIN';
+        $roleUser[] = 'ROLE_PRO';
+        $roleUser[] = 'ROLE_ADMIN';
 
-        return array_unique($role_user);
+        return array_unique($roleUser);
     }
 
-    public function setRoleUser(array $role_user): self
+    public function setRoleUser(array $roleUser): self
     {
-        $this->role_user = $role_user;
+        $this->roleUser = $roleUser;
 
         return $this;
     }
 
     public function getAdresseUser(): ?string
     {
-        return $this->adresse_user;
+        return $this->adresseUser;
     }
 
-    public function setAdresseUser(string $adresse_user): self
+    public function setAdresseUser(string $adresseUser): self
     {
-        $this->adresse_user = $adresse_user;
+        $this->adresseUser = $adresseUser;
 
         return $this;
     }

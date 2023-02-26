@@ -14,6 +14,11 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 class AppAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -33,18 +38,31 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 // // log email and password
 // $this->logger->info('Email: ' . $emailUser);
 // $this->logger->info('Password: ' . $password);
-        $emailUser = $request->request->get('email_user', '');
+        $emailUser = $request->request->get('emailUser', '');
+        
+        $passwordUser = $request->request->get('passwordUser', '');
 
-
+        // // $password = $request->request->get('password', '');
+        // dump($emailUser);
+        // dump($passwordUser);
         $request->getSession()->set(Security::LAST_USERNAME, $emailUser);
 
         return new Passport(
             new UserBadge($emailUser),
-            new PasswordCredentials($request->request->get('password_user', '')),
+            new PasswordCredentials($request->request->get('passwordUser', '')),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
         );
+        // return new Passport(
+        //     new UserBadge($emailUser),
+        //     new PasswordCredentials($passwordUser),
+        //     [
+        //         new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+        //     ]
+        // );
+        // dump($emailUser, $request->request->get('password_user', ''));
+
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
@@ -52,9 +70,18 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        $user = $token->getUser();
+        if(in_array('ROLE_ADMIN', $user->getRoles(),true)) {
+            return new RedirectResponse($this->urlGenerator->generate('/user'));
+         }
+        $user = $token->getUser();
+        if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
+            return new RedirectResponse($this->urlGenerator->generate('/profile'));
+        }
+        $user = $token->getUser();
+        if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
+            return new RedirectResponse($this->urlGenerator->generate('/home'));
+        }
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
         return new RedirectResponse("/login");
     }
@@ -63,7 +90,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-//     public function authenticate2(Request $request): TokenInterface
+//     public function authenticate(Request $request): TokenInterface
 // {
 //     $email = $request->request->get('email');
 //     $password = $request->request->get('password');
@@ -81,5 +108,5 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 //     $token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
 
 //     return $token;
-// }
+
 }

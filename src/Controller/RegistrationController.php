@@ -54,10 +54,10 @@ class RegistrationController extends AbstractController
             );
 
             // dd($request->get("registration_form"));
-            $user->setEmailUser($request->get("registration_form")["email_user"]);
-            $user->setNomUser($request->get("registration_form")["nom_user"]);
-            $user->setAdresseUser($request->get("registration_form")["adresse_user"]);
-            $spec = $specialityRepository->findOneBy(["id" => $request->get("registration_form")["speciality"] ]);
+            $user->setEmailUser($request->get("registration_form")["emailUser"]);
+            $user->setNomUser($request->get("registration_form")["nomUser"]);
+            $user->setAdresseUser($request->get("registration_form")["adresseUser"]);
+            $spec = $specialityRepository->findOneBy(["id" => $request->get("registration_form")["speciality"]]);
             // $request->get("registration_form")["speciality"]
 
             
@@ -119,9 +119,9 @@ class RegistrationController extends AbstractController
                  )
              );
 
-             $user->setEmailUser($request->get("registration_form")["email_user"]);
-             $user->setNomUser($request->get("registration_form")["nom_user"]);
-             $user->setAdresseUser($request->get("registration_form")["adresse_user"]);
+             $user->setEmailUser($request->get("registration_form")["emailUser"]);
+             $user->setNomUser($request->get("registration_form")["nomUser"]);
+             $user->setAdresseUser($request->get("registration_form")["adresseUser"]);
             // $user->setEmailUser($request->get("email_user"));
             // $user->setNomUser($request->get("nom_user"));
             // $user->setAdresseUser($request->get("adresse_user"));

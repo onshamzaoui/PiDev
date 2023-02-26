@@ -16,17 +16,16 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email_user')
-            ->add('nom_user')
-            ->add('password_user',PasswordType::class)
+            ->add('emaiLUser')
+            ->add('nomUser')
+            ->add('passwordUser',PasswordType::class)
             // ->add('role_user')
-            ->add('adresse_user')
+            ->add('adresseUser')
             // ->add('speciality')
             ->add('speciality', EntityType::class, [
                 'class' => Speciality::class,
                 'choice_label' => 'speciality_name',
             ])
-            ->add('Save',SubmitType::class)
             ;
     
     }
