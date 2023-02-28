@@ -1,0 +1,13 @@
+{% extends 'backComp.html.twig' %}
+
+{% block title %}Edit TypeDechet{% endblock %}
+
+{% block main %}
+    <h1>Edit TypeDechet</h1>
+
+    {{ include('type_dechet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_type_dechet_index') }}">back to list</a>
+
+    {{ include('type_dechet/_delete_form.html.twig') }}
+{% endblock %}

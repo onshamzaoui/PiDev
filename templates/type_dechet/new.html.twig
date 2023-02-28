@@ -1,0 +1,34 @@
+{% extends 'backComp.html.twig' %} 
+{# 
+{% block title %}New TypeDechet{% endblock %}
+
+{% block main %}
+    <h1>Create new TypeDechet</h1>
+
+    {{ include('type_dechet/_form.html.twig') }}
+
+    <a href="{{ path('app_type_dechet_index') }}">back to list</a>
+{% endblock %} #}
+
+
+{% block title %}New TypeDechet{% endblock %}
+
+{% block main %}
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Ajouter un nouveau type de dechets</h3>
+                    </div>
+                    <div class="card-body">
+                        {{ include('type_dechet/_form.html.twig') }}
+                    </div>
+                    <div class="card-footer text-right">
+                        <a href="{{ path('app_type_dechet_index') }}" class="btn btn-secondary mr-2">Voir tous les types</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

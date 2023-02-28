@@ -1,0 +1,80 @@
+{% extends 'backComp.html.twig' %}
+
+{% block title %}TypeDechet index{% endblock %}
+{# 
+{% block main %}
+    <h1>TypeDechet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomDechet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_dechet in type_dechets %}
+            <tr>
+                <td>{{ type_dechet.id }}</td>
+                <td>{{ type_dechet.NomDechet }}</td>
+                <td>
+                    <a href="{{ path('app_type_dechet_show', {'id': type_dechet.id}) }}">show</a>
+                    <a href="{{ path('app_type_dechet_edit', {'id': type_dechet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_dechet_new') }}">Create new</a>
+{% endblock %} #}
+
+
+{% block main %}
+    <div class="container">
+        <h1 class="mb-4">Les types de déchet disponibles</h1>
+        <div class="row">
+            <div class="col-md-10 col-lg-8">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>NomDechet</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for type_dechet in type_dechets %}
+                        <tr>
+                            <td>{{ type_dechet.id }}</td>
+                            <td>{{ type_dechet.NomDechet }}</td>
+                            <td>
+                                <a href="{{ path('app_type_dechet_show', {'id': type_dechet.id}) }}" class="btn btn-sm btn-outline-secondary">Show</a>
+                                <a href="{{ path('app_type_dechet_edit', {'id': type_dechet.id}) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">No records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-lg-8">
+            <a href="{{ path('app_type_dechet_new') }}" class="btn btn-primary">
+    <i class="fas fa-plus"></i> Ajouter un nouveau type
+</a>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

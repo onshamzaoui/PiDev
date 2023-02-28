@@ -157,36 +157,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    // /**
-    //  * @return Collection<int, specialite>
-    //  */
-    // public function getSpecialite(): Collection
-    // {
-    //     return $this->specialite;
-    // }
-
-    // public function addSpecialite(specialite $specialite): self
-    // {
-    //     if (!$this->specialite->contains($specialite)) {
-    //         $this->specialite->add($specialite);
-    //         $specialite->setUser($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeSpecialite(specialite $specialite): self
-    // {
-    //     if ($this->specialite->removeElement($specialite)) {
-    //         // set the owning side to null (unless already changed)
-    //         if ($specialite->getUser() === $this) {
-    //             $specialite->setUser(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
     public function getUserIdentifier(): string
     {
         return (string) $this->id;
@@ -226,11 +196,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
-    // public function __toString()
-    // {
-    //     return $this->speciality;
-    // }
-
 
 }

@@ -70,20 +70,20 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-        $user = $token->getUser();
-        if(in_array('ROLE_ADMIN', $user->getRoles(),true)) {
-            return new RedirectResponse($this->urlGenerator->generate('/user'));
-         }
-        $user = $token->getUser();
-        if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
-            return new RedirectResponse($this->urlGenerator->generate('/profile'));
-        }
-        $user = $token->getUser();
-        if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
-            return new RedirectResponse($this->urlGenerator->generate('/home'));
-        }
-        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-        return new RedirectResponse("/login");
+        // $user = $token->getUser();
+        // if(in_array('ROLE_ADMIN', $user->getRoles(),true)) {
+        //     return new RedirectResponse($this->urlGenerator->generate('/user'));
+        //  }
+        // $user = $token->getUser();
+        // if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
+        //     return new RedirectResponse($this->urlGenerator->generate('/profile'));
+        // }
+        // $user = $token->getUser();
+        // if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
+        //     return new RedirectResponse($this->urlGenerator->generate('/home'));
+        // }
+        // // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse("/default");
     }
 
     protected function getLoginUrl(Request $request): string

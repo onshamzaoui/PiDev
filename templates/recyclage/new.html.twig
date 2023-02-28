@@ -1,0 +1,12 @@
+{% extends 'backComp.html.twig' %} 
+
+{% block title %}New Recyclage{% endblock %}
+
+{% block main %}
+<h2 class="my-5"><i class="bi bi-plus-circle-fill"></i> Nouveau recyclage</h2>
+
+    {{ include('recyclage/_form.html.twig') }}
+    <a href="{{ path('app_recyclage_index') }}" class="btn btn-secondary mt-3"><i class="bi bi-arrow-left"></i> Retour à la liste</a>
+
+
+{% endblock %}

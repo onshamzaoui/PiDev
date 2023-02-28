@@ -1,0 +1,13 @@
+{% extends 'backComp.html.twig' %} 
+
+{% block title %}Edit Recyclage{% endblock %}
+
+{% block main %}
+    <h1>Edit Recyclage</h1>
+
+    {{ include('recyclage/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_recyclage_index') }}">back to list</a>
+
+    {{ include('recyclage/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'backComp.html.twig' %} 
+{# 
+{% block title %}Recyclage index{% endblock %}
+
+{% block main %}
+    <h1>Recyclage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recyclage in recyclages %}
+            <tr>
+                <td>{{ recyclage.id }}</td>
+              <td>{{ recyclage.don }}</td>
+
+
+                <td>
+                    <a href="{{ path('app_recyclage_show', {'id': recyclage.id}) }}">show</a>
+                    <a href="{{ path('app_recyclage_edit', {'id': recyclage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_recyclage_new') }}">Create new</a>
+{% endblock %} #}
+
+
+
+{% block title %}Liste des Recyclages{% endblock %}
+
+{% block main %}
+    <div class="container">
+<h1 class="my-5"><i class="bi bi-recycle"></i></h1>
+<h2 class="my-5 text-uppercase display-4">Liste des recyclages</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">Id</th>
+                        <th scope="col">Don</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for recyclage in recyclages %}
+                    <tr>
+                        <td>{{ recyclage.id }}</td>
+                        <td>{{ recyclage.don }}</td>
+                        
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_recyclage_show', {'id': recyclage.id}) }}">Show</a>
+                            <a class="btn btn-secondary" href="{{ path('app_recyclage_edit', {'id': recyclage.id}) }}">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a class="btn btn-success mt-3" href="{{ path('app_recyclage_new') }}">Create new</a>
+    </div>
+{% endblock %}
