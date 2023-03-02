@@ -18,30 +18,25 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mime\Address;
 
 
 class AppAuthenticator extends AbstractLoginFormAuthenticator
 {
+    private EmailVerifier $emailVerifier;
     use TargetPathTrait;
-
+    
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator,EmailVerifier $emailVerifier)
     {
+        $this->emailVerifier = $emailVerifier;
     }
 
     public function authenticate(Request $request): Passport
     {
-//         $emailUser = $request->request->get('email_user', '');
-// $password = $request->request->get('password', '');
-
-// // log email and password
-// $this->logger->info('Email: ' . $emailUser);
-// $this->logger->info('Password: ' . $password);
         $emailUser = $request->request->get('emailUser', '');
-        
-        $passwordUser = $request->request->get('passwordUser', '');
-
         // // $password = $request->request->get('password', '');
         // dump($emailUser);
         // dump($passwordUser);
@@ -54,15 +49,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
         );
-        // return new Passport(
-        //     new UserBadge($emailUser),
-        //     new PasswordCredentials($passwordUser),
-        //     [
-        //         new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
-        //     ]
-        // );
         // dump($emailUser, $request->request->get('password_user', ''));
-
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
@@ -70,43 +57,30 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-        // $user = $token->getUser();
-        // if(in_array('ROLE_ADMIN', $user->getRoles(),true)) {
-        //     return new RedirectResponse($this->urlGenerator->generate('/user'));
-        //  }
-        // $user = $token->getUser();
-        // if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
-        //     return new RedirectResponse($this->urlGenerator->generate('/profile'));
-        // }
-        // $user = $token->getUser();
-        // if(in_array('ROLE_CLIENT', $user->getRoles(),true)) {
-        //     return new RedirectResponse($this->urlGenerator->generate('/home'));
-        // }
-        // // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-        return new RedirectResponse("/default");
+        $user = $token->getUser();
+        if($user->isIsVerified()==true) {
+
+                if (in_array('ROLE_ADMIN', $user->getRoles())) {
+                    return new RedirectResponse($this->urlGenerator->generate('user'));
+                } 
+                else{
+                    if (in_array('ROLE_PRO', $user->getRoles())) {
+                        return new RedirectResponse($this->urlGenerator->generate('profile'));
+                    } else{
+                    if (in_array('ROLE_CLIENT', $user->getRoles())) {
+                        return new RedirectResponse($this->urlGenerator->generate('default'));
+                    }
+                }
+            }
+        }
+        
+     return new RedirectResponse("/default");
     }
+    
 
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-//     public function authenticate(Request $request): TokenInterface
-// {
-//     $email = $request->request->get('email');
-//     $password = $request->request->get('password');
-
-//     $user = $this->userRepository->findOneBy(['email' => $email]);
-
-//     if (!$user) {
-//         throw new AuthenticationException('User not found');
-//     }
-
-//     if (!$this->passwordHasher->isPasswordValid($user, $password)) {
-//         throw new AuthenticationException('Invalid password');
-//     }
-
-//     $token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
-
-//     return $token;
 
 }

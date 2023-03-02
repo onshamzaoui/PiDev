@@ -32,7 +32,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank (message:'Password is required')]
     #[Assert\Length(min:4)]
-    
     private ?string $passwordUser = null;
 
     #[ORM\Column]
@@ -47,22 +46,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // #[Assert\NotBlank (message:"speciality is required")]
     private Speciality $speciality ;
 
-   
-    // #[ORM\ManyToOne(inversedBy: 'user')]
-
-    // // #[ORM\ManyToOne(mappedBy: 'user', targetEntity: Specialite::class)]
-    // #[Assert\NotBlank (message:'Specialite is required')]
-
-    // private Collection $specialite;
-
-    // #[ORM\Column(type: 'boolean')]
-    // private $isVerified = false;
-
-    // public function __construct()
-    // {
-    //     $this->specialite = new ArrayCollection();
-    // }
     private $plainPassword;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isVerified = null;
 
     public function getPlainPassword(): ?string
     {
@@ -127,14 +114,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoleUser(): array
     {
-        // return $this->role_user;
-        // $role_user = $this->role_user;
+        //  return $this->roleUser;
+         $roleUser = $this->roleUser;
           // guarantee every user at least has ROLE_USER
-        $roleUser[] = 'ROLE_CLIENT';
+        // $roleUser[] = 'ROLE_CLIENT';
 
       
-        $roleUser[] = 'ROLE_PRO';
-        $roleUser[] = 'ROLE_ADMIN';
+        // $roleUser[] = 'ROLE_PRO';
+        // $roleUser[] = 'ROLE_ADMIN';
 
         return array_unique($roleUser);
     }
@@ -196,5 +183,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(?bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+
 
 }

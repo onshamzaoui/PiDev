@@ -59,16 +59,10 @@ class RegistrationController extends AbstractController
             $user->setAdresseUser($request->get("registration_form")["adresseUser"]);
             $spec = $specialityRepository->findOneBy(["id" => $request->get("registration_form")["speciality"]]);
             // $request->get("registration_form")["speciality"]
-
-            
-
             $user->setSpeciality($spec);
 
-
-
-
             $role = array('role' => "ROLE_PRO");
-             $user->setRoleUser($role);
+            $user->setRoleUser($role);
 
 
 
@@ -76,14 +70,15 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
 
+
             // // generate a signed url and email it to the user
-            // // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            // //     (new TemplatedEmail())
-            // //         ->from(new Address('onshamzaoui720@gmail.com', 'GreenIt'))
-            // //         ->to($user->getEmailUser())
-            // //         ->subject('Please Confirm your Email')
-            // //         ->htmlTemplate('registration/confirmation_email.html.twig')
-            // // );
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('onshamzaoui720@gmail.com', 'GreenItBuildings'))
+                    ->to($user->getEmailUser())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
             // // do anything else you need here, like send an email
 
           return $userAuthenticator->authenticateUser(
@@ -91,7 +86,8 @@ class RegistrationController extends AbstractController
                 $authenticator,
               $request
          );
-              // Debug message
+         return $this->redirectToRoute('app_login');
+         // Debug message
     
         }
 
@@ -136,13 +132,13 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            //     (new TemplatedEmail())
-            //         ->from(new Address('onshamzaoui720@gmail.com', 'GreenIt'))
-            //         ->to($user->getEmailUser())
-            //         ->subject('Please Confirm your Email')
-            //         ->htmlTemplate('registration/confirmation_email.html.twig')
-            // );
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('onshamzaoui720@gmail.com', 'GreenItBuildings'))
+                    ->to($user->getEmailUser())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
@@ -150,6 +146,8 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request
             );
+            return $this->redirectToRoute('app_login');
+
         }
 
         return $this->render('registration/registerClient.html.twig', [
@@ -174,6 +172,6 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_login');
     }
 }

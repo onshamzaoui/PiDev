@@ -31,9 +31,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        #  - { path: ^/user, roles: ROLE_ADMIN }
-        #  - { path: ^/profile, roles: ROLE_CLIENT }
-        #  - { path: ^/profile, roles: ROLE_PRO }
+         - { path: ^/user, roles: ADMIN}
+         - { path: ^/profile, roles:  PRO }
+         - { path: ^/profile, roles: CLIENT }
 
 when@test:
     security:
@@ -49,5 +49,6 @@ when@test:
                 memory_cost: 10 # Lowest possible value for argon
 # security:
     role_hierarchy:
+        ROLE_ADMIN: [ROLE_ADMIN]
         ROLE_CLIENT: [ROLE_CLIENT]
         ROLE_PRO: [ROLE_PRO]

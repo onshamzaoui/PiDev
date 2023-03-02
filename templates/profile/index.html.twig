@@ -24,7 +24,7 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/default">Home</a></li>
               {# <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li> #}
               <li class="breadcrumb-item active" aria-current="page">User Profile</li>
             </ol>
@@ -85,7 +85,7 @@
                   <div class="row">
 
                     <div class="col-sm-3">
-                      <h6 class="mb-0"> {{ form_label(form.nom_user, 'Name') }}{{ form_widget(form.nom_user) }} </h6>
+                      <h6 class="mb-0"> {{ form_label(form.nomUser, 'Name') }}{{ form_widget(form.nomUser) }} </h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                     change your Name
@@ -94,7 +94,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">{{ form_label(form.email_user, 'Email') }}{{ form_widget(form.email_user) }} </h6>
+                      <h6 class="mb-0">{{ form_label(form.emailUser, 'Email') }}{{ form_widget(form.emailUser) }} </h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       change your Email
@@ -112,7 +112,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">{{ form_label(form.plainPassword, 'Email') }}{{ form_widget(form.plainPassword) }} </h6>
+                      <h6 class="mb-0">{{ form_label(form.plainPassword, 'Password') }}{{ form_widget(form.plainPassword) }} </h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       change your Password
@@ -121,7 +121,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">{{ form_label(form.adresse_user, 'Adress') }}{{ form_widget(form.adresse_user) }} </h6>
+                      <h6 class="mb-0">{{ form_label(form.adresseUser, 'Adress') }}{{ form_widget(form.adresseUser) }} </h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       change your Adress

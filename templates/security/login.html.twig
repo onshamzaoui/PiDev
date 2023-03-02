@@ -4,14 +4,20 @@
 
 {% block body %}
 <form method="post">
-    {% if error %}
+    {# {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    {# {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
     {% endif %} #}
+	 {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+      {% for flash_error in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.emailUser }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,8 +72,8 @@
 							Forgot
 						</span>
 
-						<a href="#" class="txt2">
-							UserEmail / Password?
+						<a href="{{path ('app_forgot_password_request')}}" class="txt2">
+						 Password?
 						</a>
 					</div>
                     <div class="checkbox mb-3">
