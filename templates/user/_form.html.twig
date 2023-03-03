@@ -1,0 +1,38 @@
+{% extends 'backComp.html.twig' %}
+{% block main %}
+<h1>add new user </h1>
+                {{ form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+                			<div class="form-group">
+                        {{ form_label(form.nomUser,"Your Name") }}
+                        {{ form_widget(form.nomUser,{'attr':{'class':'text'}})}}
+							          <div class="alert alert-danger">
+                            	{{ form_errors(form.nomUser) }}
+							</div>
+                        {{ form_label(form.emailUser,"Your Email")}}
+                            {{ form_widget(form.emailUser,{'attr':{'class':'text'}})}}
+							<div class="alert alert-danger">
+                            	{{ form_errors(form.emailUser) }}
+							</div>
+                        {{ form_label(form.adresse_user,"Your Adresse") }}
+                            {{ form_widget(form.adresseUser,{'attr':{'class':'text'}})}}
+							<div class="alert alert-danger">
+                            	{{ form_errors(form.adresseUser) }}
+							</div>
+						 <div class="form-group">
+							 {{ form_label(form.speciality,"Your specialite") }}
+                            {{ form_widget(form.speciality)}}
+							<div class="alert alert-danger">
+                            	{{ form_errors(form.speciality) }}
+							</div>
+						</div>
+                         {{ form_label(form.passwordUser,"Your password") }}
+                            {{ form_widget(form.passwordUser,{'attr':{'class':'text'}})}}
+							<div class="alert alert-danger">
+                            	{{ form_errors(form.passwordUser) }}
+							</div>
+                     <button class="btn">{{ button_label|default('Save') }}</button>
+                {{ form_end(form) }}
+			
+		
+   
+{% endblock %}

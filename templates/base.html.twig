@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>
+			{% block title %}Green it
+			{% endblock %}
+		</title>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<meta content="" name="keywords">
+		<meta content="" name="description">
+		{% block stylesheets %}
+
+			<!-- Bootstrap CSS -->
+			<link
+			rel="stylesheet" href="{{asset('css/bootstrap1.min.css')}}">
+
+			<!-- Style -->
+			<link
+			rel="stylesheet" href="{{asset('css/style.css')}}">
+			<!-- Favicon -->
+			<link
+			href="{{ asset('/img/favicon.ico')}}" rel="icon">
+
+			<!-- Google Web Fonts -->
+			<link rel="preconnect" href="{{ asset('https://fonts.googleapis.com')}}">
+			<link rel="preconnect" href="{{ asset('https://fonts.gstatic.com')}}" crossorigin>
+			<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+
+			<!-- Icon Font Stylesheet -->
+			<link href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css')}}" rel="stylesheet">
+			<link
+			href="{{asset('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css')}}" rel="stylesheet">
+
+			<!-- Libraries Stylesheet -->
+			<link href="{{ asset('lib/animate/animate.min.css')}}" rel="stylesheet">
+			<link
+			href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+			<!-- Customized Bootstrap Stylesheet -->
+			<link
+			href="{{ asset('css/bootstrapv5.min.css')}}" rel="stylesheet">
+
+			{#<link
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> <!-- Template Stylesheet -->
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													#}
+			<link href="{{ asset('css/style5.css')}}" rel="stylesheet">
+		{% endblock %}
+	</head>
+	<body>
+		{% block navbar %}
+
+			<!-- Spinner Start -->
+			<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+				<div class="spinner-border text-primary" role="status"></div>
+			</div>
+			<!-- Spinner End -->
+
+
+			<!-- Navbar Start -->
+			<div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+				<div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
+					<div class="col-lg-6 px-5 text-start">
+						<small>
+							<i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
+						<small class="ms-4">
+							<i class="fa fa-envelope me-2"></i>GreenIt@gmail.com</small>
+					</div>
+					<div class="col-lg-6 px-5 text-end">
+						<small>Follow us:</small>
+						<a class="text-body ms-3" href="">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a class="text-body ms-3" href="">
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a class="text-body ms-3" href="">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+						<a class="text-body ms-3" href="">
+							<i class="fab fa-instagram"></i>
+						</a>
+					</div>
+				</div>
+
+				<nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+					<a href="{{ asset('index.html')}}" class="navbar-brand ms-4 ms-lg-0">
+						<h1 class="fw-bold text-primary m-0">Gr<span class="text-secondary">een</span>it</h1>
+					</a>
+					<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+
+						<div class="navbar-nav ms-auto p-4 p-lg-0">
+							<a href="{{ path('default') }}" class="nav-item nav-link active">Home</a>
+							<a href="{{ path('aboutus') }}" class="nav-item nav-link">About Us</a>
+							<a href="" class="nav-item nav-link">Services</a>
+
+							<div class="nav-item dropdown">
+								{% block categorie %}
+									<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">OurProducts</a>
+									<div class="dropdown-menu m-0">
+										<a href="{{ asset('blog.html')}}" class="dropdown-item">Tools</a>
+										<a href="{{ asset('feature.html')}}" class="dropdown-item">OutdoorPower</a>
+										<a href="{{ path('contactus') }}" class="nav-item nav-link">Maintenance</a>
+									</div>
+								</div>
+							{% endblock %}
+
+						</div>
+						<div class="d-none d-lg-flex ms-2">
+
+							<a class="btn-sm-square bg-white rounded-circle ms-3" href="/register">
+								<small class="fa fa-user text-body"></small>
+							</a>
+							<a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+								<small class="fa fa-shopping-bag text-body"></small>
+							</a>
+						</div>
+					</div>
+				</nav>
+			</div>
+		{% endblock %}
+		<!-- Navbar End -->
+		<!-- Carousel Start -->
+		{% block carousel %}
+			<div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
+				<div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img class="w-100" src="{{ asset('img/carousel-1.jpg')}}" alt="Image">
+							<div class="carousel-caption">
+								<div class="container">
+									<div class="row justify-content-start">
+										<div class="col-lg-7">
+											<h1 class="display-2 mb-5 animated slideInDown">We Offer You A Bright Future</h1>
+											<a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">Products</a>
+											<a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">Services</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img class="w-100" src="{{ asset('img/carousel-2.jpg')}}" alt="Image">
+							<div class="carousel-caption">
+								<div class="container">
+									<div class="row justify-content-start">
+										<div class="col-lg-7">
+											<h1 class="display-2 mb-5 animated slideInDown">Look Beyond The Horizon</h1>
+											<a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">Products</a>
+											<a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">Services</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+			<!-- Carousel End -->
+		{% endblock %}
+
+		<!-- About Start -->
+		{% block about %}
+			<div class="container-xxl py-5">
+				<div class="container">
+					<div class="row g-5 align-items-center">
+						<div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+							<div class="about-img position-relative overflow-hidden p-5 pe-0">
+								<img class="w-100" src="{{ asset('img/Car4.jpg')}}">
+							</div>
+						</div>
+						<div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+							<h1 class="display-5 mb-4">
+								About us</h1>
+							<p class="mb-4">As a leader in sustainable roofing solutions, our green roofing company is dedicated to providing high-quality and innovative roofing services that are both environmentally-friendly and cost-effective. With a commitment to promoting the benefits of green roofs, we strive to create beautiful and functional green spaces that benefit both our clients and the environment. At our core, we believe in providing exceptional customer service, using only the best materials, and implementing the most advanced technologies to ensure that our customers receive the highest level of satisfaction possible.</p>
+							<a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- About End -->
+		{% endblock %}
+
+		<!-- service Start -->
+		{% block service %}
+			<div class="container-fluid bg-light bg-icon my-5 py-6">
+				<div class="container">
+					<div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+						<h1 class="display-5 mb-3">Our Services</h1>
+						<p>Our urban roofing company provides comprehensive services for the installation, repair, and maintenance of roofing systems to ensure the protection and longevity of your property.</p>
+					</div>
+					<div class="row g-4">
+						<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+							<div class="bg-white text-center h-100 p-4 p-xl-5">
+								<img class="img-fluid mb-4" src="{{ asset('img/icon-1.png')}}" alt="">
+								<h4 class="mb-3">Maintenance</h4>
+								<p class="mb-4">We help you maintain a healthy garden.</p>
+								<a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+							<div class="bg-white text-center h-100 p-4 p-xl-5">
+								<img class="img-fluid mb-4" src="{{ asset('img/icon-2.png')}}" alt="">
+								<h4 class="mb-3">Planting</h4>
+								<p class="mb-4">We help you plant your herbs in an ideal way.</p>
+								<a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+							<div class="bg-white text-center h-100 p-4 p-xl-5">
+								<img class="img-fluid mb-4" src="{{ asset('img/icon-3.png')}}" alt="">
+								<h4 class="mb-3">Installation</h4>
+								<p class="mb-4">We help you install the ideal enviorment in which you will plant your garden.</p>
+								<a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		<!-- service End -->
+
+		<!-- Product Start -->
+		{% block product %}
+
+			<div class="container-xxl py-5">
+				<div class="container">
+					<div class="row g-0 gx-5 align-items-end">
+						<div class="col-lg-6">
+							<div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+								<h1 class="display-5 mb-3">Our Products</h1>
+								<p>We offer you the highest quality products that will match your needs.</p>
+							</div>
+						</div>
+						<div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+							<ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+								<li class="nav-item me-2">
+									<a class="btn btn-outline-primary border-2 active" data-bs-toggle="pill" href="#tab-1">Tools</a>
+								</li>
+								<li class="nav-item me-2">
+									<a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-2">Outdoor Power
+									</a>
+								</li>
+								<li class="nav-item me-0">
+									<a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-3">Maintenance</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="tab-content">
+						<div id="tab-1" class="tab-pane fade show p-0 active">
+							<div class="row g-4">
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset ('img/shovel.jpg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">shovel</a>
+											<span class="text-primary me-1">$19.99</span>
+											<span class="text-body text-decoration-line-through">$27.00</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset ('img/Cultivator.jpg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">
+												Cultivator</a>
+											<span class="text-primary me-1">$10.00</span>
+											<span class="text-body text-decoration-line-through">$19.99</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset('img/pocket pruners.jpg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">pocket pruners</a>
+											<span class="text-primary me-1">$15.00</span>
+											<span class="text-body text-decoration-line-through">$22.00</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset('img/nursery spade.jpg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">Nursery Spade</a>
+											<span class="text-primary me-1">$19.00</span>
+											<span class="text-body text-decoration-line-through">$29.00</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset('img/Leonard Spring Rake.jpg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">Spring Rake</a>
+											<span class="text-primary me-1">$19.00</span>
+											<span class="text-body text-decoration-line-through">$29.00</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset('img/Garden Scoot with Flat-Free Tires.jpeg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">Garden Scoot</a>
+											<span class="text-primary me-1">$150.99</span>
+											<span class="text-body text-decoration-line-through">$189.99</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset('img/Pick Mattock.jpg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">Pick Mattock</a>
+											<span class="text-primary me-1">$19.00</span>
+											<span class="text-body text-decoration-line-through">$29.00</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+									<div class="product-item">
+										<div class="position-relative bg-light overflow-hidden">
+											<img class="w-100" src="{{ asset('img/Push Broom.jpg')}}" alt="">
+											<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+										</div>
+										<div class="text-center p-4">
+											<a class="d-block h5 mb-2" href="">Push Broom</a>
+											<span class="text-primary me-1">$19.00</span>
+											<span class="text-body text-decoration-line-through">$29.00</span>
+										</div>
+										<div class="d-flex border-top">
+											<small class="w-50 text-center border-end py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-eye text-primary me-2"></i>View detail</a>
+											</small>
+											<small class="w-50 text-center py-2">
+												<a class="text-body" href="">
+													<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+									<a class="btn btn-primary rounded-pill py-3 px-5" href="">Browse More Products</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		<!-- Product End -->
+
+
+		<!-- Join our team Start -->
+		{% block JoinUs %}
+			<div class="container-fluid bg-primary bg-icon mt-5 py-6">
+				<div class="container">
+					<div class="row g-5 align-items-center">
+						<div class="col-md-7 wow fadeIn" data-wow-delay="0.1s">
+							<h1 class="display-5 text-white mb-3">Join Our Service Team!</h1>
+							<p class="text-white mb-0">We need hard working people to help us provide our the best service to our clients, we offer you an amazing experience with an opportunity to thrive and join our market.</p>
+						</div>
+						<div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
+							<a class="btn btn-lg btn-secondary rounded-pill py-3 px-5" href="">Join Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		<!-- Join our team End -->
+
+
+		<!-- Testimonial Start -->
+		{% block testimonial %}
+			<div class="container-fluid bg-light bg-icon py-6 mb-5">
+				<div class="container">
+					<div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+						<h1 class="display-5 mb-3">Customer Review</h1>
+						<p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+					</div>
+					<div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+						<div class="testimonial-item position-relative bg-white p-5 mt-4">
+							<i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
+							<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+							<div class="d-flex align-items-center">
+								<img class="flex-shrink-0 rounded-circle" src="{{ asset('img/testimonial-1.jpg')}}" alt="">
+								<div class="ms-3">
+									<h5 class="mb-1">Client Name</h5>
+									<span>Profession</span>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-item position-relative bg-white p-5 mt-4">
+							<i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
+							<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+							<div class="d-flex align-items-center">
+								<img class="flex-shrink-0 rounded-circle" src="{{ asset('img/testimonial-2.jpg')}}" alt="">
+								<div class="ms-3">
+									<h5 class="mb-1">Client Name</h5>
+									<span>Profession</span>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-item position-relative bg-white p-5 mt-4">
+							<i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
+							<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+							<div class="d-flex align-items-center">
+								<img class="flex-shrink-0 rounded-circle" src="{{ asset('img/testimonial-3.jpg')}}" alt="">
+								<div class="ms-3">
+									<h5 class="mb-1">Client Name</h5>
+									<span>Profession</span>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-item position-relative bg-white p-5 mt-4">
+							<i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
+							<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+							<div class="d-flex align-items-center">
+								<img class="flex-shrink-0 rounded-circle" src="{{ asset('img/testimonial-4.jpg')}}" alt="">
+								<div class="ms-3">
+									<h5 class="mb-1">Client Name</h5>
+									<span>Profession</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		<!-- Testimonial End -->
+
+
+		<!-- event Start -->
+		{% block event %}
+			<div class="container-xxl py-5">
+				<div class="container">
+					<div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+						<h1 class="display-5 mb-3">Events</h1>
+						<p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+					</div>
+					<div class="row g-4">
+						<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+							<img class="img-fluid" src="img/blog-1.jpg" alt="">
+							<div class="bg-light p-4">
+								<a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own firm</a>
+								<div class="text-muted border-top pt-4">
+									<small class="me-3">
+										<i class="fa fa-user text-primary me-2"></i>Admin</small>
+									<small class="me-3">
+										<i class="fa fa-calendar text-primary me-2"></i>01 Ja5</small>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+							<img class="img-fluid" src="img/blog-2.jpg" alt="">
+							<div class="bg-light p-4">
+								<a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own firm</a>
+								<div class="text-muted border-top pt-4">
+									<small class="me-3">
+										<i class="fa fa-user text-primary me-2"></i>Admin</small>
+									<small class="me-3">
+										<i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+							<img class="img-fluid" src="img/blog-3.jpg" alt="">
+							<div class="bg-light p-4">
+								<a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and vegetables in own firm</a>
+								<div class="text-muted border-top pt-4">
+									<small class="me-3">
+										<i class="fa fa-user text-primary me-2"></i>Admin</small>
+									<small class="me-3">
+										<i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		<!-- event End -->
+
+
+		<!-- Footer Start -->
+		{% block footer %}
+			<div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+				<div class="container py-5">
+					<div class="row g-5">
+						<div class="col-lg-3 col-md-6">
+							<h1 class="fw-bold text-primary mb-4">Gr<span class="text-secondary">een</span>it</h1>
+							<p>we strive to create beautiful and functional green spaces that benefit both our clients and the environment.
+							</p>
+							<div class="d-flex pt-2">
+								<a class="btn btn-square btn-outline-light rounded-circle me-1" href="">
+									<i class="fab fa-twitter"></i>
+								</a>
+								<a class="btn btn-square btn-outline-light rounded-circle me-1" href="">
+									<i class="fab fa-facebook-f"></i>
+								</a>
+								<a class="btn btn-square btn-outline-light rounded-circle me-1" href="">
+									<i class="fab fa-youtube"></i>
+								</a>
+								<a class="btn btn-square btn-outline-light rounded-circle me-0" href="">
+									<i class="fab fa-linkedin-in"></i>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<h4 class="text-light mb-4">Address</h4>
+							<p>
+								<i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+							<p>
+								<i class="fa fa-phone-alt me-3"></i>+216 72812401</p>
+							<p>
+								<i class="fa fa-envelope me-3"></i>Greenit@example.com</p>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<h4 class="text-light mb-4">Quick Links</h4>
+							<a class="btn btn-link" href="">About Us</a>
+							<a class="btn btn-link" href="">Contact Us</a>
+							<a class="btn btn-link" href="">Our Services</a>
+							<a class="btn btn-link" href="">Terms & Condition</a>
+							<a class="btn btn-link" href="">Support</a>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<h4 class="text-light mb-4">Newsletter</h4>
+							<p>send us a quick feedback</p>
+							<div class="position-relative mx-auto" style="max-width: 400px;">
+								<input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your feedback">
+								<button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Send</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- Footer End -->
+
+			<!-- Back to Top -->
+			<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top">
+				<i class="bi bi-arrow-up"></i>
+			</a>
+
+		{% endblock %}
+		{% block javascripts %}
+
+			<!-- JavaScript Libraries -->
+			<script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js')}}"></script>
+			<script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js')}}"></script>
+			<script src="{{ asset('lib/wow/wow.min.js')}}"></script>
+			<script src="{{ asset('lib/easing/easing.min.js')}}"></script>
+			<script src="{{ asset('lib/waypoints/waypoints.min.js')}}"></script>
+			<script src="{{ asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
+			{# <script src="{{ asset('https://code.jquery.com/jquery-3.3.1.slim.min.js')}}"></script> 
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<script src="{{ asset('https://code.jquery.com/jquery-3.3.1.slim.min.js')}}"></script>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<script src="{{ asset('https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/esm/popper.min.js')}}"></script>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>#}
+
+			<!-- Template Javascript -->
+			<script src="{{ asset('js/main.js')}}"></script>
+		{% endblock %}
+	</body>
+</html>

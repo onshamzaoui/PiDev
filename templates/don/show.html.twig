@@ -1,0 +1,95 @@
+ {% extends 'backComp.html.twig' %} 
+{# 
+{% block title %}Don{% endblock %}
+
+{% block main %}
+    <h1>Don</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ don.id }}</td>
+            </tr>
+            <tr>
+                <th>Quantitedon</th>
+                <td>{{ don.quantitedon }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ don.description }}</td>
+            </tr>
+
+                <tr>
+                <th>Type du dechet</th>
+                <td>{{ don.TypeDechet }}</td>
+            </tr>
+            <tr>
+                <th>Datedon</th>
+                <td>{{ don.datedon ? don.datedon|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_don_index') }}">back to list</a>
+
+    <a href="{{ path('app_don_edit', {'id': don.id}) }}">edit</a>
+
+    {{ include('don/_delete_form.html.twig') }}
+{% endblock %} #}
+
+
+{% block title %}Don{% endblock %}
+
+{% block main %}
+    <div class="row justify-content-between align-items-center">
+        <div class="col-12 col-md-8">
+            <h1>Don</h1>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="d-flex justify-content-end mb-3">
+                <a class="btn btn-secondary mr-2" href="{{ path('app_don_edit', {'id': don.id}) }}">Edit</a>
+                {{ include('don/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ don.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Quantité</th>
+                        <td>{{ don.quantitedon }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ don.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Type de déchet</th>
+                        <td>{{ don.typedechet }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de don</th>
+                        <td>{{ don.datedon ? don.datedon|date('Y-m-d') : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a class="btn btn-primary" href="{{ path('app_don_index') }}">Back to list</a>
+{# 
+    <div class="mt-3">
+
+    <a class="btn btn-primary" href="{{ path('app_don_edit', {'id': don.id}) }}">edit</a>
+    </div> #}
+
+    {# {{ include('don/_delete_form.html.twig') }} #}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'backComp.html.twig' %}
+
+{% block title %}Speciality{% endblock %}
+
+{% block main %}
+    <h1>Speciality</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ speciality.id }}</td>
+            </tr>
+            <tr>
+                <th>Speciality_name</th>
+                <td>{{ speciality.specialityName }}</td>
+            </tr>
+              <tr>
+                <th>Description</th>
+                <td>{{ speciality.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_speciality_index') }}">back to list</a>
+
+    <a href="{{ path('app_speciality_edit', {'id': speciality.id}) }}">edit</a>
+
+    {{ include('speciality/_delete_form.html.twig') }}
+{% endblock %}

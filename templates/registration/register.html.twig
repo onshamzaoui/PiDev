@@ -1,0 +1,218 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %}Register{% endblock %} #}
+
+
+{% block body %}
+   
+	<!DOCTYPE html>
+<html>
+<head>
+<title>GreenIT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link rel="stylesheet" type="text/css" href="{{ asset ("assets/css/style.css") }}">
+<!-- //Custom Theme files -->
+
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+
+</head>
+
+<style>
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  color: green;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+</style>
+
+<body>
+
+ {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+      {% for flash_error in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+<div class="main-w3layouts wrapper">
+		<h1>SignUp</h1>
+		{# <h1><nav class= "nav font-weight-500 mb-1 mb-sm-2 mb-lg-5 px-sm-2 px-lg-5">  #}
+{# <a class="nav-link ac" href="/register">Careers</a> 
+<a class="nav-link ac" href="/registerClient">Clients</a>  </nav></h1> #}
+<h1><a href="/register" ><button class="button-85">Careers</button></a> 
+<a href="/registerClient"><button class="button-85">Clients</button></a></h1> 
+
+<div class="main-agileinfo">
+
+<div class="agileits-top"> 
+  
+
+{# <a class="nav-link" href="#">Admission</a> </nav> #}
+
+<div class="container-fluid">
+    {# <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-12 col-lg-11 col-xl-10">
+            <div class="card d-flex mx-auto my-5">
+                <div class="row">
+                    <div class="col-md-5 col-sm-12 col-xs-12 c1 p-5">
+                        <div class="row mb-5 m-3"> <img src="https://i.imgur.com/pFfTOwy.jpg" width="70vw" height="55vh" alt=""> </div> <img src="https://i.imgur.com/kdE7GKw.jpg" width="120vw" height="210vh" class="mx-auto d-flex" alt="Teacher">
+                        <div class="row justify-content-center">
+                            <div class="w-75 mx-md-5 mx-1 mx-sm-2 mb-5 mt-4 px-sm-5 px-md-2 px-xl-1 px-2">
+                                <h1 class="wlcm">Welcome to your blackboard</h1> <span class="sp1"> <span class="px-3 bg-danger rounded-pill"></span> <span class="ml-2 px-1 rounded-circle"></span> <span class="ml-2 px-1 rounded-circle"></span> </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div> #}
+
+
+	 {{ form_start(registrationForm,{'attr':{'novalidate':'novalidate'}})}}
+                	<div class="form-group">
+                        {{ form_label(registrationForm.nomUser,"Your Name",{'label_attr': {'style': 'color: white;'}}) }}
+                        {{ form_widget(registrationForm.nomUser,{'attr':{'class':'text'}})}}
+						<div class="alert alert-danger">
+                            {{ form_errors(registrationForm.nomUser) }}
+						</div>
+					</div>
+                              {# {{ form_row(registrationForm.email_user) }} #}
+                    <div class="form-group"> 
+                        {{ form_label(registrationForm.emailUser,"Your Email",{'label_attr': {'style': 'color: white;'}}) }}
+                        {{ form_widget(registrationForm.emailUser,{'attr':{'class':'text'}})}}
+						<div class="alert alert-danger">
+                            {{ form_errors(registrationForm.emailUser) }}
+						</div>
+					</div>
+					<div class="form-group"> 
+                        {{ form_label(registrationForm.adresseUser,"Your Adresse",{'label_attr': {'style': 'color: white;'}}) }}
+                        {{ form_widget(registrationForm.adresseUser,{'attr':{'class':'text'}})}}
+						<div class="alert alert-danger">
+                            {{ form_errors(registrationForm.adresseUser) }}
+						</div>
+			</div>
+					<div class="form-group">
+						{{ form_label(registrationForm.speciality,"Your specialite",{'label_attr': {'style': 'color: white;'}}) }}
+                        {{ form_widget(registrationForm.speciality)}}
+						<div class="alert alert-danger">
+                            {{ form_errors(registrationForm.speciality) }}
+						</div>
+					</div>
+                              {# {{ form_row(registrationForm.plainPassword, {
+                                     label: 'Password'
+                                 }) }}  #}
+					<div class="form-group"> 
+                        {{ form_label(registrationForm.plainPassword,"Your password",{'label_attr': {'style': 'color: white;'}}) }}
+                        {{ form_widget(registrationForm.plainPassword,{'attr':{'class':'text'}})}}
+						<div class="alert alert-danger">
+                        	{{ form_errors(registrationForm.plainPassword) }}
+						</div>
+					</div>
+
+					        <input type="submit" value="SIGNUP">
+	{{ form_end(registrationForm) }}
+
+</div> 
+
+	  
+    </div>
+  </div>
+</div> 
+   
+   							 {# {{ form_row(registrationForm.agreeTerms) }} #}
+</div>
+</div>   
+</div>
+  
+<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+</ul>
+</body>
+</html>
+{% endblock %}
+
+ {# padding: 0.6em 2em;
+  border: none;
+  color: green;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation; #}
