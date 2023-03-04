@@ -1,3 +1,16 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+    
+easy_admin_bundle:
+    resource: '@EasyAdminBundle/Controller/'
+    type: annotation
+    prefix: /admin
+
+# # Define your own custom routes
+# app_admin:
+#     path: /admin
+#     controller: App\Controller\AdminController
+dashboard:
+    path: /admin
+    controller: App\Controller\Admin\DashboardController::index
