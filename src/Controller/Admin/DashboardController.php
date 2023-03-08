@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
+
 use App\Entity\Categorie;
 use App\Entity\Don;
 use App\Entity\Produit;
@@ -13,26 +14,48 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\Admin\Crud\UserCrudController;
+use App\Controller\Admin\Crud\CategorieCrudController;
+use App\Controller\Admin\Crud\ProduitCrudController;
+use App\Controller\Admin\Crud\SpecialityCrudController;
+use App\Controller\Admin\Crud\DonCrudController;
+use App\Controller\Admin\Crud\RecyclageCrudController;
+use App\Controller\Admin\Crud\ProfileCrudController;
+use App\Controller\ChartController;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\ProfileFormType;
+
 
 class DashboardController extends AbstractDashboardController
 {
     private $adminUrlGenerator;
+    private $chartBuilder;
 
-    public function __construct(AdminUrlGenerator $adminUrlGenerator)
+    public function __construct(AdminUrlGenerator $adminUrlGenerator,ChartBuilderInterface $chartBuilder)
     {
         $this->adminUrlGenerator = $adminUrlGenerator;
+        $this->chartBuilder = $chartBuilder;
+     
+        
     }
 
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
-        // return $this->redirect($this->adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
+        
+        $chart = $this->adminUrlGenerator->setRoute('app_chart')->generateUrl();
         $userUrl = $this->adminUrlGenerator->setController(UserCrudController::class)->generateUrl();
         $categoryUrl = $this->adminUrlGenerator->setController(CategorieCrudController::class)->generateUrl();
         $productUrl = $this->adminUrlGenerator->setController(ProduitCrudController::class)->generateUrl();
         $specialtyUrl = $this->adminUrlGenerator->setController(SpecialityCrudController::class)->generateUrl();
         $donUrl = $this->adminUrlGenerator->setController(DonCrudController::class)->generateUrl();
         $recyclageUrl = $this->adminUrlGenerator->setController(RecyclageCrudController::class)->generateUrl();
+        // $profileUrl = $this->adminUrlGenerator->setRoute('app_profile')->generateUrl();
+        $profileUrl = $this->adminUrlGenerator->setController(ProfileController::class)->generateUrl();
+
+
 
         
         return $this->render('admin/dashboard.html.twig', [
@@ -42,9 +65,12 @@ class DashboardController extends AbstractDashboardController
             'specialtyUrl' => $specialtyUrl,
             'donUrl' => $donUrl,
             'recyclageUrl' => $recyclageUrl,
+            'profileUrl' => $profileUrl,
+            'chart'=>$chart,
 
         ]);
     }
+ 
 
     public function configureDashboard(): Dashboard
     {
@@ -54,20 +80,37 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        return [
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+        // $profileUrl = $this->adminUrlGenerator->setController(ProfileCrudController::class)->generateUrl();
 
-            MenuItem::section('Products'),
+        return [
+            MenuItem::linkToDashboard('Dashboard'),
+
+            MenuItem::section('Products Managment'),
             MenuItem::linkToCrud('Product', 'fa fa-product-hunt', Produit::class),
             MenuItem::linkToCrud('Category', 'fa fa-list', Categorie::class),
     
-            MenuItem::section('Users'),
+            MenuItem::section('Users Managment'),
             MenuItem::linkToCrud('User', 'fa fa-user', User::class),
             MenuItem::linkToCrud('Specialty', '	fas fa-graduation-cap', Speciality::class),
+            MenuItem::linkToRoute('Statics', 'fa fa-pie-chart', 'app_chart'),
 
-            MenuItem::section('Recyclage'),
+
+            MenuItem::section('Recyclage Management'),
             MenuItem::linkToCrud('Recyclage', 'fa fa-recycle', Recyclage::class),
             MenuItem::linkToCrud('Don', 'fas fa-thumbs-up', Don::class),
+
+            MenuItem::section('settings'),
+            // MenuItem::linkTo
+            // MenuItem::linkToCrud('Profile', 'fa fa-recycle', $profileUrl),
+            
+            // MenuItem::linkToRoute('Profile', 'fa fa-user', 'app_profile'),
+            MenuItem::linkToRoute('Profile', 'fa fa-gear', 'app_profile'),
+            // MenuItem::linkToRoute('Lougout', 'fa fa-gear', '/logout'),
+
+
+
+
+
 
         ];
     }
@@ -80,7 +123,24 @@ class DashboardController extends AbstractDashboardController
 
 
 
+   // #[Route('/admin/profile', name: 'app_admin_profile')]
+    // public function profile(Request $request): Response
+    // {
+    //     $user = $this->getUser();
 
+    //     $form = $this->createForm(ProfileFormType::class, $user);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $this->getDoctrine()->getManager()->flush();
+
+    //         return $this->redirectToRoute('app_admin');
+    //     }
+
+    //     return $this->render('/admin/index.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 
 
 

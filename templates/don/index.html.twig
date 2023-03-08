@@ -65,7 +65,7 @@
                         <td>{{ don.quantitedon }}</td>
                         <td>{{ don.description }}</td>
                         <td>{{ don.typedechet }}</td>
-                        <td>{{ don.datedon ? don.datedon|date('Y-m-d') : '' }}</td>
+                        {# <td>{{ don.datedon ? don.datedon|date('Y-m-d') : '' }}</td> #}
                         <td>
                             <a href="{{ path('app_don_show', {'id': don.id}) }}" class="btn btn-primary"><i class="bi bi-eye-fill"></i> Voir</a>
                             <a href="{{ path('app_don_edit', {'id': don.id}) }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Modifier</a>

@@ -51,6 +51,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $isVerified = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $disable = null;
+    // private ?bool  $disable= false;
+
+
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
@@ -196,6 +201,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function isDisable(): ?bool
+    {
+        return $this->disable;
+    }
 
+    public function setDisable(?bool $disable): self
+    {
+        $this->disable = $disable;
+
+        return $this;
+    }
 
 }

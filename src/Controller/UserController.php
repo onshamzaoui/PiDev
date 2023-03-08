@@ -75,4 +75,48 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+     
+    #[Route('/disable/{id}', name: 'disable')]
+
+    public function disable(Request $request,$id){
+
+        $rep = $this->getDoctrine()->getManager();
+        $user = $rep->getRepository(User::class)->find($id);
+        $user->setdisable(true);
+        $rep->flush();
+        return $this->redirectToRoute('app_user_index');
+}
+#[Route('/enable/{id}', name: 'enable')]
+
+    public function enable($id){
+
+        $rep = $this->getDoctrine()->getManager();
+        $user = $rep->getRepository(User::class)->find($id);
+        $user->setdisable(false);
+        $rep->flush();
+        return $this->redirectToRoute('app_user_index');
+}
+#[Route('/upgrade/{id}', name: 'upgrade')]
+
+    public function makeadmin($id){
+
+        $rep = $this->getDoctrine()->getManager();
+        $user = $rep->getRepository(User::class)->find($id);
+        $roles[] = 'ROLE_CLIENT';
+        $roles[] = 'ROLE_ADMIN';
+        $user->setRoles($roles);
+        $rep->flush();
+        return $this->redirectToRoute('app_user_index');
+}
+#[Route('/downUpgrade/{id}', name: 'DownUpgrade')]
+
+    public function unmakeadmin($id){
+
+        $rep = $this->getDoctrine()->getManager();
+        $user = $rep->getRepository(User::class)->find($id);
+        $roles[] = 'ROLE_CLIENT';
+        $user->setRoles($roles);
+        $rep->flush();
+        return $this->redirectToRoute('app_user_index');
+}
 }

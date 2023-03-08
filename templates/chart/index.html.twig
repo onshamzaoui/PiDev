@@ -1,0 +1,14 @@
+{# {% extends '@EasyAdmin/layout.html.twig' %} #}
+{# {% block title %}Hello ChartController!{% endblock %} #}
+{{ encore_entry_link_tags('app') }}
+
+
+{% block body_content %}
+
+{# {{ dump(chart) }} #}
+
+{{ render_chart(chart) }}
+
+{% endblock %}
+{{ encore_entry_script_tags('app') }}
+

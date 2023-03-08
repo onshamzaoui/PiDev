@@ -6,6 +6,7 @@ easy_admin_bundle:
     resource: '@EasyAdminBundle/Controller/'
     type: annotation
     prefix: /admin
+ 
 
 # # Define your own custom routes
 # app_admin:
@@ -14,3 +15,12 @@ easy_admin_bundle:
 dashboard:
     path: /admin
     controller: App\Controller\Admin\DashboardController::index
+app_profile_edit:
+    path: '/profile/{id}/edit'
+    controller: 'App\Controller\ProfileController::edit'
+app_profile:
+    path: /profile
+    controller: App\Controller\ProfileController::index
+app_chart:
+     path: /chart
+     controller: App\Controller\ChartController::index  

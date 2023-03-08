@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mime\Address;
-
+use Symfony\Component\Mime\Message;
 
 class AppAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -59,18 +59,26 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         }
         $user = $token->getUser();
         // // dump($user);
-        if($user->isIsVerified()==true) {
+        if($user->isIsVerified()==true && $user->isDisable()==NULL) {
         if (in_array('ROLE_ADMIN', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('app_user_index'));
-        } elseif (in_array('ROLE_PRO', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('app_produit_index'));
-        } elseif (in_array('ROLE_CLIENT', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('app_profile'));
+            return new RedirectResponse($this->urlGenerator->generate('app_admin'));
+        // } elseif (in_array('ROLE_PRO', $user->getRoles())) {
+        //     return new RedirectResponse($this->urlGenerator->generate('default'));
+        // } elseif (in_array('ROLE_CLIENT', $user->getRoles())) {
+        //     return new RedirectResponse($this->urlGenerator->generate('default'));
         } else {
             return new RedirectResponse($this->urlGenerator->generate('default'));
         }
     }
-                return new RedirectResponse("/login");
+    return new Response('
+    <script>
+        $(document).ready(function(){
+            alert("Your account is not verified or is disabled");
+        });
+        window.location.href = "/login";
+    </script>'
+);   
+    // return new RedirectResponse("/login", 302, ['warning' => 'your account is not verified or is disabled']);
 
 }
         //working code

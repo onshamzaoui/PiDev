@@ -1,0 +1,17 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body_content %}
+    {# {{ dump(chart) }} #}
+
+    {{ render_chart(chart) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}

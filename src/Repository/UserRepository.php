@@ -39,6 +39,37 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
+
+
+    public function countByRole()
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u.roleUser as role, COUNT(u.id) as count')
+            ->groupBy('u.roleUser');
+    
+        $results = $qb->getQuery()->getResult();
+    
+        $counts = [
+            'ROLE_ADMIN' => 0,
+            'ROLE_PRO' => 0,
+            'ROLE_CLIENT' => 0
+        ];
+    
+        foreach ($results as $result) {
+            foreach ($result['role'] as $role) {
+                if (in_array($role, ['ROLE_ADMIN', 'ROLE_PRO', 'ROLE_CLIENT'])) {
+                    $counts[$role] += $result['count'];
+                }
+            }
+        }
+    
+        return $counts;
+    }
+    
+    
+ 
+    
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
