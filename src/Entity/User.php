@@ -53,8 +53,67 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?bool $disable = null;
-    // private ?bool  $disable= false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $numero = null;
+    // private ?bool  $disable= false;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Bonus::class, cascade:['persist'])]
+    private Collection $bonuses;
+
+    public function __construct()
+    {
+        $this->bonuses = new ArrayCollection();
+    }
+    /**
+     * @return Collection<int, Bonus>
+     */
+    public function getBonuses(): Collection
+    {
+        return $this->bonuses;
+    }
+
+    public function addBonus(Bonus $bonus): self
+    {
+        if (!$this->bonuses->contains($bonus)) {
+            $this->bonuses->add($bonus);
+            $bonus->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBonus(Bonus $bonus): self
+    {
+        if ($this->bonuses->removeElement($bonus)) {
+            // set the owning side to null (unless already changed)
+            if ($bonus->getUser() === $this) {
+                $bonus->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    
+    #[ORM\Column(type:'integer')]
+
+    public $points;
+    public function __construct1()
+    {
+        $this->bonuses = new ArrayCollection();
+        $this->points = $this->getPoints();
+    }
+    public function getPoints(): int
+    {
+        $points = 0;
+
+        foreach ($this->bonuses as $bonus) {
+            $points += $bonus->getPoints();
+        }
+
+        return $points;
+    }
 
     public function getPlainPassword(): ?string
     {
@@ -209,6 +268,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDisable(?bool $disable): self
     {
         $this->disable = $disable;
+
+        return $this;
+    }
+
+    public function getNumero(): ?string
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(?string $numero): self
+    {
+        $this->numero = $numero;
 
         return $this;
     }

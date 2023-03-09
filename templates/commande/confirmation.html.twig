@@ -1,0 +1,46 @@
+{% extends 'templatePanier.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/confirmation.css') }}">
+{% endblock %}
+
+{% block title %}Confirmation de commande{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="confirmation">
+            <div class="confirmation__header">
+                <h1 class="confirmation__title">Confirmation de commande</h1>
+            </div>
+            <div class="confirmation__body">
+                <div class="confirmation__details">
+                    <p class="confirmation__message">Votre commande a été enregistrée avec succès.</p>
+                    <p class="confirmation__number">Numéro de commande: {{ commande.id }}</p>
+                    <p class="confirmation__total">Total de la commande: {{ commande.total }} $</p>
+                    <p class="confirmation__address">Adresse de la commande: {{ commande.adressecommande }}</p>
+                    <p class="confirmation__date">Date estimée de la commande: {{ commande.datecommande|date('d/m/Y') }}</p>
+                </div>
+                <div class="confirmation__products">
+                    <p class="confirmation__products-title">Produits commandés:</p>
+                    <ul class="confirmation__products-list">
+                        {% for produit in commande.produits %}
+                            <li class="confirmation__product">
+                                </div>
+                                <div class="confirmation__product-details">
+                                    <h3 class="confirmation__product-name">{{ produit.nomproduit }}</h3>
+                                    <p class="confirmation__product-price">{{ produit.prixproduit }} $</p>
+    
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <a href="{{ path('pdf_confirmation', {'id': commande.id}) }}" class="btn btn-primary">
+            Voir PDF
+        </a>
+    </div>
+{% endblock %}

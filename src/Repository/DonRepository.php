@@ -38,29 +38,35 @@ class DonRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return Don[] Returns an array of Don objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Don
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function countByTypeDechet()
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->select('t.NomDechet as type, COUNT(d.id) as count')
+            ->leftJoin('d.TypeDechet', 't')
+            ->groupBy('t.id');
+    
+        $results = $qb->getQuery()->getResult();
+    
+        $counts = [
+            'plastique' => 0,
+            'alimentaire' => 0,
+            'industriel' => 0,
+            'ménagers' => 0,
+            'dangereux' => 0,
+            'de construction' => 0,
+            'médical' => 0,
+            'vert' => 0
+        ];
+    
+        foreach ($results as $result) {
+            $type = $result['type'];
+            if ($type) {
+                $counts[$type] += $result['count'];
+            }
+        }
+    
+        return $counts;
+    }
+    
+    
 }

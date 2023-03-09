@@ -1,0 +1,69 @@
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.confirmation {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.confirmation__header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.confirmation__title {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.confirmation__body {
+    display: flex;
+    flex-direction: column;
+}
+
+.confirmation__details {
+    padding: 40px;
+    border-bottom: 1px solid #ccc;
+}
+
+.confirmation__message {
+    font-size: 1.5rem;
+    margin: 0 0 20px;
+}
+
+.confirmation__number,
+.confirmation__total,
+.confirmation__address,
+.confirmation__date {
+    font-size: 1.2rem;
+    margin: 0 0 10px;
+}
+
+.confirmation__products {
+    padding: 40px;
+}
+
+.confirmation__products-title {
+    font-size: 1.5rem;
+    margin: 0 0 20px;
+}
+
+.confirmation__products-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.confirmation__product {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+

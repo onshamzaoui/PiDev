@@ -1,0 +1,27 @@
+{% extends 'templatePanier.html.twig' %}
+
+{% block title %}Modifier Facture{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="mb-4">Modifier Facture</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        {{ form_label(form.datefacturation, 'Date de facturation', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.datefacturation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.montanttotal, 'Montant total', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.montanttotal, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

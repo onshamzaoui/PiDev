@@ -1,0 +1,57 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .heading-primary {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .heading-secondary {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  .card__header {
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  .card__body {
+    padding: 20px;
+  }
+  
+  .paragraph {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table__header {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  .table__row {
+    border: 1px solid #ccc;
+  }
+  
+  .table__cell {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  

@@ -29,6 +29,9 @@ class ProfileFormType extends AbstractType
             'attr' => ['autocomplete' => 'new-password'],
         ])
         ->add('adresseUser')
+        ->add('points')
+
+        
 
     ;
 

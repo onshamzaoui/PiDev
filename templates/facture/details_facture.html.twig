@@ -1,0 +1,55 @@
+{% extends 'templatePanier.html.twig' %}
+
+{% block title %}Détails de la facture n°{{ facture.id }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Détails de la facture n°{{ facture.id }}</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Facture</h2>
+                        <hr>
+                        <p><strong>Date de facturation :</strong> {{ facture.datefacturation|date('d/m/Y H:i:s') }}</p>
+                        <p><strong>Montant total :</strong> {{ facture.montanttotal }} $</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Commande associée</h2>
+                        <hr>
+                        <p><strong>Numéro de commande :</strong> {{ facture.commande.id }}</p>
+                        <p><strong>Total de la commande :</strong> {{ facture.commande.total }} $</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2>Produits commandés :</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom du produit</th>
+                            <th>Prix unitaire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produit in facture.commande.produits %}
+                            <tr>
+                                <td>{{ produit.nomproduit }}</td>
+                                <td>{{ produit.prixproduit }} $</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

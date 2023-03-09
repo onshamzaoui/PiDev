@@ -1,0 +1,58 @@
+{% extends 'templatePanier.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/details.css') }}">
+{% endblock %}
+
+{% block title %}Détails de la commande{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1 class="heading-primary">Détails de la commande {{ commande.id }}</h1>
+
+    <div class="card">
+      <div class="card__header">
+        <h2 class="heading-secondary">Adresse de livraison</h2>
+      </div>
+      <div class="card__body">
+        <p class="paragraph">{{ commande.adressecommande }}</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__header">
+        <h2 class="heading-secondary">Date de commande</h2>
+      </div>
+      <div class="card__body">
+        <p class="paragraph">{{ commande.datecommande|date('d/m/Y') }}</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__header">
+        <h2 class="heading-secondary">Total de la commande</h2>
+      </div>
+      <div class="card__body">
+        <p class="paragraph">{{ commande.total }} $</p>
+      </div>
+    </div>
+
+    <h2 class="heading-primary">Produits associés à la commande</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="table__header">Produit</th>
+          <th class="table__header">Prix unitaire</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for produit in commande.produits %}
+          <tr class="table__row">
+            <td class="table__cell">{{ produit.nomproduit }}</td>
+            <td class="table__cell">{{ produit.prixproduit }} $</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -20,7 +20,23 @@ app_profile_edit:
     controller: 'App\Controller\ProfileController::edit'
 app_profile:
     path: /profile
-    controller: App\Controller\ProfileController::index
+    controller: App\Controller\ProfileController::profile
 app_chart:
      path: /chart
      controller: App\Controller\ChartController::index  
+don_export_csv:
+    path: /export/csv
+    controller: App\Controller\DonController::exportToCSV
+
+affectation_new:
+    path: \Affectation/Service/new
+    controller: App\Controller\AffectationServiceController::new
+# stats:
+#     path: /stats
+#     controller: App\Controller\StatsController::index
+pdf:
+    path: /Affectation/Service/pdf
+    controller: App\Controller\AffectationServiceController::show
+generate_qr_code:
+    path: /affectation/service/qrcode/{id}
+    controller: App\Controller\AffectationServiceController::showqr

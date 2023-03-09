@@ -1,0 +1,40 @@
+{% extends 'affectation.html.twig' %}
+
+{% block title %}AffectationService{% endblock %}
+
+{% block body %}
+    <h1>AffectationService</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ affectation_service.id }}</td>
+            </tr>
+            <tr>
+                <th>DateService</th>
+                <td>{{ affectation_service.DateService ? affectation_service.DateService|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureService</th>
+                <td>{{ affectation_service.HeureService ? affectation_service.HeureService|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>LieuxService</th>
+                <td>{{ affectation_service.LieuxService }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_affectation_service_index') }}">back to list</a>
+
+    <a href="{{ path('app_affectation_service_edit', {'id': affectation_service.id}) }}">edit</a>
+
+    {{ include('affectation_service/_delete_form.html.twig') }}
+    </div>
+      <a target="_blank" , href="{{ path('app_affectation_service_pdf', {'id': affectation_service.id}) }}">Download PDF</a>  
+   
+        </div>
+    <a href="{{ path('app_affectation_service_qrcode', { 'id': affectation_service.id }) }}">Generate QR Code</a>
+
+{% endblock %}

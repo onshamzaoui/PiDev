@@ -1,0 +1,58 @@
+{% extends 'events.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+    <h1>Event</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Event</th>
+                <td>{{ event.nom }}</td>
+            </tr>
+            <tr>
+                <th>DateStart</th>
+                <td>{{ event.datedebut ? event.datedebut|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateEnd</th>
+                <td>{{ event.datefin ? event.datefin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>
+                    <img src="{{ asset('uploads/event_images/' ~ event.image) }}" alt="Event Image" width="150px">
+                </td>
+            </tr>
+            <tr>
+                <th>Likes</th>
+                <td>
+                    {{ event.likes }}
+                    <form action="{{ path('app_event_like', {'id': event.id}) }}" method="POST" style="display: inline">
+                        <button type="submit">Like</button>
+                        <input type="hidden" name="_token" value="{{ csrf_token('like' ~ event.id) }}">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <th>Dislikes</th>
+                <td>
+                    {{ event.dislikes }}
+                    <form action="{{ path('app_event_dislike', {'id': event.id}) }}" method="POST" style="display: inline">
+                        <button type="submit">Dislike</button>
+                        <input type="hidden" name="_token" value="{{ csrf_token('dislike' ~ event.id) }}">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_index') }}">Back to List</a>
+    <a href="{{ path('app_event_edit', {'id': event.id}) }}">Edit</a>
+    {{ include('event/_delete_form.html.twig') }}
+{% endblock %}

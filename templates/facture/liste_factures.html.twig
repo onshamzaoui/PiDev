@@ -1,0 +1,50 @@
+{% extends 'backComp.html.twig' %}
+
+{% block main %}
+  <h1 class="page-title">Liste des factures</h1>
+  <div class="table-container">
+  <form class="search-container">
+    <input class="form-control border-0" type="search" placeholder="Search" id="myInput" >
+    </form>
+    <table class="table" id="mytable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date de facturation</th>
+          <th>Montant total</th>
+          <th>Commande associée</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for facture in factures %}
+          <tr>
+            <td>{{ facture.id }}</td>
+            <td>{{ facture.datefacturation|date('d/m/Y') }}</td>
+            <td>{{ facture.montanttotal }} $</td>
+            <td>{{ facture.commande }}</td>
+            <td>
+              <a href="{{ path('details_facture', { 'id': facture.id }) }}" class="btn btn-primary">Détails</a>
+              <a href="{{ path('modifier_facture', { 'id': facture.id }) }}" class="btn btn-secondary">Modifier</a>
+              <a href="{{ path('supprimer_facture', { 'id': facture.id }) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette facture ?')">Supprimer</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+           <script>
+           console.log("hello");
+           $(document).ready(function() {
+    
+         $("#myInput").on("keyup", function() {
+        
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+         });
+       });
+</script>
+{% endblock %}

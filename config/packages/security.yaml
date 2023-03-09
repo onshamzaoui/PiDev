@@ -36,10 +36,22 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/user, roles: ROLE_ADMIN }
-         - { path: ^/profile, roles: ROLE_ADMIN }
+        #  - { path: ^/profile, roles: ROLE_ADMIN }
+         - { path: ^/produit, roles: ROLE_ADMIN }
+         - { path: ^/commandes, roles: ROLE_ADMIN }
+         - { path: ^/factures, roles: ROLE_ADMIN }
+         - { path: ^/recyclage, roles: ROLE_ADMIN }
+         - { path: ^/type/dechet, roles: ROLE_ADMIN }
+        #  - { path: ^/event, roles: ROLE_ADMIN }
 
-         - { path: ^/profile, roles: ROLE_CLIENT }
-         - { path: ^/profile, roles: ROLE_PRO }
+
+
+         - { path: ^/panier_produit, roles: ROLE_CLIENT }
+         - { path: ^/produit, roles: ROLE_CLIENT }
+
+         - { path: ^/affectation/service/new, roles: ROLE_CLIENT }
+
+        #  - { path: ^/profile, roles: ROLE_PRO }
          - { path: ^/produit, roles: ROLE_PRO }
         #  - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #  - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }

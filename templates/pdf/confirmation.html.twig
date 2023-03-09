@@ -1,0 +1,49 @@
+{% block stylesheets %}
+<style>
+    @page { margin: 20px; }
+    body { margin: 20px; }
+    .confirmation { page-break-after: always; }
+    .confirmation__header { text-align: center; margin-bottom: 20px; }
+    .confirmation__title { font-size: 24px; }
+    .confirmation__details { margin-bottom: 20px; }
+    .confirmation__message { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+    .confirmation__number, .confirmation__total, .confirmation__address, .confirmation__date { font-size: 16px; margin-bottom: 10px; }
+    .confirmation__products-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+    .confirmation__product { margin-bottom: 10px; }
+    .confirmation__product-name { font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+    .confirmation__product-price { font-size: 16px; }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="confirmation">
+        <div class="confirmation__header">
+            <h1 class="confirmation__title">Confirmation de commande</h1>
+        </div>
+        <div class="confirmation__body">
+            <div class="confirmation__details">
+                <p class="confirmation__message">Votre commande a été enregistrée avec succès.</p>
+                <p class="confirmation__number">Numéro de commande: {{ commande.id }}</p>
+                <p class="confirmation__total">Total de la commande: {{ commande.total }} $</p>
+                <p class="confirmation__address">Adresse de la commande: {{ commande.adressecommande }}</p>
+                <p class="confirmation__date">Date estimée de la commande: {{ commande.datecommande|date('d/m/Y') }}</p>
+            </div>
+            <div class="confirmation__products">
+                <p class="confirmation__products-title">Produits commandés:</p>
+                <ul class="confirmation__products-list">
+                    {% for produit in commande.produits %}
+                    <li class="confirmation__product">
+                        <div class="confirmation__product-details">
+                            <h3 class="confirmation__product-name">{{ produit.nomproduit }}</h3>
+                            <p class="confirmation__product-price">{{ produit.prixproduit }} $</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

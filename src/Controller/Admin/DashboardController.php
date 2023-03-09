@@ -22,10 +22,19 @@ use App\Controller\Admin\Crud\DonCrudController;
 use App\Controller\Admin\Crud\RecyclageCrudController;
 use App\Controller\Admin\Crud\ProfileCrudController;
 use App\Controller\ChartController;
+use App\Entity\AffectationService;
+use App\Entity\Category;
+use App\Entity\Commande;
+use App\Entity\Event;
+use App\Entity\Facture;
+use App\Entity\Service;
+use App\Entity\TypeDechet;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\ProfileFormType;
+use League\Csv\Writer;
+
 
 
 class DashboardController extends AbstractDashboardController
@@ -46,6 +55,9 @@ class DashboardController extends AbstractDashboardController
     {
         
         $chart = $this->adminUrlGenerator->setRoute('app_chart')->generateUrl();
+        $chartDon = $this->adminUrlGenerator->setRoute('app_chart_don')->generateUrl();
+        $export = $this->adminUrlGenerator->setRoute('don_export_csv')->generateUrl();
+
         $userUrl = $this->adminUrlGenerator->setController(UserCrudController::class)->generateUrl();
         $categoryUrl = $this->adminUrlGenerator->setController(CategorieCrudController::class)->generateUrl();
         $productUrl = $this->adminUrlGenerator->setController(ProduitCrudController::class)->generateUrl();
@@ -54,6 +66,18 @@ class DashboardController extends AbstractDashboardController
         $recyclageUrl = $this->adminUrlGenerator->setController(RecyclageCrudController::class)->generateUrl();
         // $profileUrl = $this->adminUrlGenerator->setRoute('app_profile')->generateUrl();
         $profileUrl = $this->adminUrlGenerator->setController(ProfileController::class)->generateUrl();
+        $serviceUrl = $this->adminUrlGenerator->setController(ServiceCrudController::class)->generateUrl();
+        $AffectationserviceUrl = $this->adminUrlGenerator->setController(AffectationServiceCrudController::class)->generateUrl();
+        $eventUrl = $this->adminUrlGenerator->setController(EventCrudController::class)->generateUrl();
+        $categoryUrl = $this->adminUrlGenerator->setController(CategoryCrudController::class)->generateUrl();
+        $TypeDechetUrl = $this->adminUrlGenerator->setController(TypeDechetCrudController::class)->generateUrl();
+        $FactureUrl = $this->adminUrlGenerator->setController(FactureCrudController::class)->generateUrl();
+        $CommandeUrl = $this->adminUrlGenerator->setController(CommandeCrudController::class)->generateUrl();
+
+
+
+
+
 
 
 
@@ -67,7 +91,15 @@ class DashboardController extends AbstractDashboardController
             'recyclageUrl' => $recyclageUrl,
             'profileUrl' => $profileUrl,
             'chart'=>$chart,
-
+            'chartDon'=>$chartDon,
+            'serviceUrl'=>$serviceUrl,
+            'AffectationserviceUrl'=>$AffectationserviceUrl,
+            'categoryUrl'=>$categoryUrl,
+            'eventUrl'=>$eventUrl,
+            'TypeDechetUrl'=>$TypeDechetUrl,
+            'export'=>$export,
+            'FactureUrl'=>$FactureUrl,
+            'CommandeUrl'=>$CommandeUrl,
         ]);
     }
  
@@ -88,6 +120,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Products Managment'),
             MenuItem::linkToCrud('Product', 'fa fa-product-hunt', Produit::class),
             MenuItem::linkToCrud('Category', 'fa fa-list', Categorie::class),
+
     
             MenuItem::section('Users Managment'),
             MenuItem::linkToCrud('User', 'fa fa-user', User::class),
@@ -98,6 +131,12 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Recyclage Management'),
             MenuItem::linkToCrud('Recyclage', 'fa fa-recycle', Recyclage::class),
             MenuItem::linkToCrud('Don', 'fas fa-thumbs-up', Don::class),
+            MenuItem::linkToCrud('TypeDechet', 'fas fa-cart-plus', TypeDechet::class),
+            MenuItem::linkToRoute('ExportCSV', 'fas fa-clipboard-list', 'don_export_csv'),
+            MenuItem::linkToRoute('Statics', 'fa fa-bar-chart', 'app_chart_don'),
+
+
+
 
             MenuItem::section('settings'),
             // MenuItem::linkTo
@@ -106,6 +145,18 @@ class DashboardController extends AbstractDashboardController
             // MenuItem::linkToRoute('Profile', 'fa fa-user', 'app_profile'),
             MenuItem::linkToRoute('Profile', 'fa fa-gear', 'app_profile'),
             // MenuItem::linkToRoute('Lougout', 'fa fa-gear', '/logout'),
+
+            MenuItem::section('Services Management'),
+            MenuItem::linkToCrud('Service', 'fas fa-leaf', Service::class),
+            MenuItem::linkToCrud('AffectationService', 'fa fa-plus-square', AffectationService::class),
+
+            MenuItem::section('Event Management'),
+            MenuItem::linkToCrud('Event', '	fas fa-poll', Event::class),
+            MenuItem::linkToCrud('Category', 'fas fa-poll-h', Category::class),
+            
+            MenuItem::section('Payment Management'),
+            MenuItem::linkToCrud('Factures', 'fas fa-money-check-alt', Facture::class),
+            MenuItem::linkToCrud('Commandes', 'fas fa-receipt', Commande::class),
 
 
 

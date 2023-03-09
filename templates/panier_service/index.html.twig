@@ -1,0 +1,51 @@
+{% extends 'templatePanier.html.twig' %}
+
+{% block title %}Votre Panier{% endblock %}
+
+{% block body %}
+<section class="bg-light p-3">
+<h1>Votre panier </h1>
+</section>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>service</th>
+        <th>Prix</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for element in dataPanier %}
+    <tr>
+    <td>{{element.service.nomservice}}</td>
+    <td class="text-right">{{element.service.prixservice}}$</td>
+    <td>
+     <a href="{{path("panier_service_delete",{id:element.service.id})}}"
+    class="btn btn-danger">
+    <i class="bi bi-cart-x"></i>
+    </a>
+    </td>
+    </tr>
+     {% else %}
+     <tr>
+     <td colspan="5" class="text-center">Votre panier est vide </td>
+     </tr>
+
+      {% endfor %}
+
+    </tbody>
+    <tfoot>
+    <tr>
+    <td colspan="3">Total</td>
+    <td class="text-end">{{total}}$</td>
+    <td> 
+       <a href="{{path("panier_service_delete_all")}}"
+          class="btn btn-danger">
+        <i class="bi bi-cart-x"></i>
+       </a> 
+    </td>
+    </tr>
+    </tfoot>
+</table>
+{% endblock %}

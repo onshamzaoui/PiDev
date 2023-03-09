@@ -1,0 +1,105 @@
+ {% extends 'base.html.twig' %} 
+
+{% block title %}Service
+{% endblock %}
+{% block carousel %}{% endblock %}
+{% block about %}{% endblock %}
+{% block product %}{% endblock %}
+{% block JoinUs %}{% endblock %}
+{% block testimonial %}{% endblock %}
+{% block event %}{% endblock %}
+{% block service %}
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="row g-5 align-items-center">
+				{% for service in services %}
+				<div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+					<div class="about-img position-relative overflow-hidden p-5 pe-0">
+						<img class="w-100" src="{{ asset(service.image) }}" alt="{{ service.NomService }} image">
+					</div>
+				</div>
+				<div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+					<h1 class="display-5 mb-4">{{ service.NomService }}</h1>
+					<p class="mb-4">{{ service.description }}</p>
+                        
+					<div class="stars">
+						{% for i in 1..5 %}
+							<i class="star" data-note="{{ i }}">&#9733;</i>
+						{% endfor %}
+						<i class="note">Note:</i>
+					</div>
+					
+					<a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="{{ path('app_affectation_service_new') }}">Reserve service</a>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const stars = document.querySelectorAll('.star');
+		let check = false;
+		stars.forEach(star => {
+			star.addEventListener('mouseover', selectStars);
+			star.addEventListener('mouseleave', unselectStars);
+			star.addEventListener('click', activeSelect);
+		})
+
+		function selectStars(e) {
+			const data = e.target;
+			const etoiles = priviousSiblings(data);
+			if (!check) {
+				etoiles.forEach(etoile => {
+					etoile.classList.add('hover');
+				})
+			}
+		}
+
+		function unselectStars(e) {
+			const data = e.target;
+			const etoiles = priviousSiblings(data);
+			if (!check) {
+				etoiles.forEach(etoile => {
+					etoile.classList.remove('hover');
+				})
+			}
+		}
+
+		function activeSelect(e) {
+			if (!check) {
+				check = true;
+				document.querySelector('.note').innerHTML = 'Note ' + e.target.dataset.note;
+			}
+		}
+
+		function priviousSiblings(data) {
+			let values = [data];
+			while (data = data.previousSibling) {
+				if (data.nodeName === 'I') {
+					values.push(data);
+				}
+			}
+			return values;
+		}
+	</script>
+
+	<style>
+		.star {
+			font-size: 2rem;
+			cursor: pointer;
+			color: rgba(0, 0, 0, 0.3);
+			transition: color 0.2s ease-in-out;
+		}
+
+		.star:hover,
+		.star.hover {
+			color: rgb(255, 196, 0);
+		}
+
+		.note {
+			margin-left: 1rem;
+			font-weight: bold;
+			font-size: 1.5rem;
+		}
+	</style>
+{% endblock %}

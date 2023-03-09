@@ -1,0 +1,22 @@
+ <div class-"container">
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div class-"container">
+    {{ form_label(form.NomService,"le nom du service") }}
+    {{ form_widget(form.NomService) }}
+    {{ form_errors(form.NomService) }}
+    </div>
+   <div class="form-group">
+		{{ form_label(form.image,"Image") }}
+		{{ form_widget(form.image) }}
+		<div class="error-message">
+			{{ form_errors(form.image) }}
+		</div>
+	</div>
+    <div class-"container">
+    {{ form_label(form.description,"l'description") }}
+    {{ form_widget(form.description) }}
+    {{ form_errors(form.description) }}
+    </div> 
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div> 

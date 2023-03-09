@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Entity\User;
+use App\Entity\Don;
+
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -45,6 +47,31 @@ class ChartController extends AbstractController
 
         return $this->render('chart/index.html.twig', [
             'chart' => $chart,
+        ]);
+    }
+    #[Route('/chartDon', name: 'app_chart_don')]
+    public function index2(): Response
+    {
+            $chartDon = $this->chartBuilder->createChart(Chart::TYPE_LINE);
+
+            $data = $this->entityManager->getRepository(Don::class)->countByTypeDechet();
+            // dd($data);
+            $labels = array_keys($data);
+            $counts = array_values($data);
+    
+            $chartDon->setData([
+                'labels' => $labels,
+                'datasets' => [
+                    [
+                        'label' => 'Don by TypeDechet',
+                        'backgroundColor' => ['#FF6384', '#36A2EB', '#FFCE56','#008000','#FF0000','800080','#FFFFFF'],
+                        'data' => $counts,
+                    ],
+                ],
+            ]);
+
+        return $this->render('chart/chartdon.html.twig', [
+            'chartDon' => $chartDon,
         ]);
     }
 }

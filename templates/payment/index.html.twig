@@ -1,0 +1,10 @@
+{% extends 'templatePanier.html.twig' %}
+
+{% block title %}Payment{% endblock %}
+
+{% block body %}
+  <h1>Payment Page</h1>
+  <p>Welcome to the payment page!</p>
+  <p>You can make a payment here using Stripe.</p>
+  <a href="{{ path('app_checkout') }}">Checkout</a>
+{% endblock %}

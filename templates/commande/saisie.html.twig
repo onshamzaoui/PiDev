@@ -1,0 +1,37 @@
+{% extends 'templatePanier.html.twig' %}
+
+{% block title %}Saisie d'une commande{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header" style="background-color: #2c3e50; color: #ffffff;">Saisie d'une commande</div>
+
+          <div class="card-body">
+           {{form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+              <div class="form-group">
+                {{ form_label(form.adressecommande, 'Adresse de livraison') }}
+                {{ form_widget(form.adressecommande, {'attr': {'class': 'form-control'}}) }}
+                {% if form_errors(form.adressecommande) %}
+                  <div class="alert alert-danger">{{ form_errors(form.adressecommande) }}</div>
+                {% endif %}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(form.datecommande, 'Date de livraison') }}
+                {{ form_widget(form.datecommande, {'attr': {'class': 'form-control'}}) }}
+                {% if form_errors(form.datecommande) %}
+                  <div class="alert alert-danger">{{ form_errors(form.datecommande) }}</div>
+                {% endif %}
+              </div>
+
+              <button type="submit" class="btn btn-success" style="background-color: #2ecc71; border-color: #2ecc71;">Passer la commande</button>
+            {{ form_end(form) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

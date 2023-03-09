@@ -1,0 +1,8 @@
+{% if qrCodeData %}
+        <p>{{ qrCodeData }}</p>
+
+    <img src="data:image/png;base64,{{ qrCodeData }}" />
+{% else %}
+    <p>Aucun code QR disponible</p>
+{% endif %} 
+{# <img src="{{ qr_code_url('app_generate_qr_code') }}" alt="My QR code"> #}

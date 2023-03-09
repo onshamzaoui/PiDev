@@ -1,0 +1,29 @@
+<div class="container">
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div class="mb-3">
+        {{ form_label(form.DateService, 'La date du service', {'label_attr': {'class': 'form-label'}}) }} 
+        {{ form_widget(form.DateService,{'attr': {'class':'form-control'}}) }}
+        {{ form_errors(form.DateService) }}
+       
+
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.HeureService, "L'heure du service", {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.HeureService,{'attr': {'class':'form-control'}}) }}
+        {{ form_errors(form.HeureService) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.LieuxService, 'Le lieu du service', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.LieuxService,{'attr': {'class':'form-control'}}) }}
+        {{ form_errors(form.LieuxService) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.NomService, 'Le nom du service', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.NomService,{'attr': {'class':'form-control'}}) }}
+        {{ form_errors(form.NomService) }}
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+ 
+</div>
+

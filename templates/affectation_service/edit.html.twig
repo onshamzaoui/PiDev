@@ -1,0 +1,13 @@
+{% extends 'affectation.html.twig' %}
+
+{% block title %}Edit AffectationService{% endblock %}
+
+{% block body %}
+    <h1>Edit AffectationService</h1>
+
+    {{ include('affectation_service/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_affectation_service_index') }}">back to list</a>
+
+    {{ include('affectation_service/_delete_form.html.twig') }}
+{% endblock %}
